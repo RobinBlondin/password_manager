@@ -1,0 +1,79 @@
+<mxfile host="app.diagrams.net" modified="2023-12-11T15:31:27.553Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="DcHJZ6ug76EnNsKqgzyp" version="22.1.7" type="device">
+  <diagram name="Page-1" id="ElSiJl9TkhxTXEHozTaf">
+    <mxGraphModel dx="1364" dy="771" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="jPy55akGN_BWyY65sUDY-2" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="290" y="40" width="490" height="720" as="geometry" />
+        </mxCell>
+        <mxCell id="jPy55akGN_BWyY65sUDY-4" value="User" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="280" width="80" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="jPy55akGN_BWyY65sUDY-5" value="Generera lösenord" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="60" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="jPy55akGN_BWyY65sUDY-6" value="Spara användaruppgifter" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="150" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="jPy55akGN_BWyY65sUDY-7" value="Byta användaruppgifter" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="230" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="jPy55akGN_BWyY65sUDY-8" value="Radera användaruppgifter" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="310" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="jPy55akGN_BWyY65sUDY-9" value="Logga in i programmet" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="390" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="jPy55akGN_BWyY65sUDY-10" value="Filtrera listan av sparade användaruppgifter" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="470" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="jPy55akGN_BWyY65sUDY-11" value="Återställa lösenord till programmet" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="550" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="jPy55akGN_BWyY65sUDY-21" value="" style="endArrow=none;html=1;rounded=0;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="jPy55akGN_BWyY65sUDY-4" target="jPy55akGN_BWyY65sUDY-5">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="420" as="sourcePoint" />
+            <mxPoint x="450" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="jPy55akGN_BWyY65sUDY-23" value="" style="endArrow=none;html=1;rounded=0;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="jPy55akGN_BWyY65sUDY-4" target="jPy55akGN_BWyY65sUDY-6">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="420" as="sourcePoint" />
+            <mxPoint x="450" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="jPy55akGN_BWyY65sUDY-24" value="" style="endArrow=none;html=1;rounded=0;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="jPy55akGN_BWyY65sUDY-4" target="jPy55akGN_BWyY65sUDY-7">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="420" as="sourcePoint" />
+            <mxPoint x="450" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="jPy55akGN_BWyY65sUDY-25" value="" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="jPy55akGN_BWyY65sUDY-8">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="110" y="360" as="sourcePoint" />
+            <mxPoint x="450" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="jPy55akGN_BWyY65sUDY-26" value="" style="endArrow=none;html=1;rounded=0;entryX=0.05;entryY=0.3;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="jPy55akGN_BWyY65sUDY-4" target="jPy55akGN_BWyY65sUDY-9">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="120" y="360" as="sourcePoint" />
+            <mxPoint x="450" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="jPy55akGN_BWyY65sUDY-27" value="" style="endArrow=none;html=1;rounded=0;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="jPy55akGN_BWyY65sUDY-4" target="jPy55akGN_BWyY65sUDY-10">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="420" as="sourcePoint" />
+            <mxPoint x="450" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="jPy55akGN_BWyY65sUDY-28" value="" style="endArrow=none;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="jPy55akGN_BWyY65sUDY-11">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="420" as="sourcePoint" />
+            <mxPoint x="110" y="360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
