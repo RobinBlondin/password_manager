@@ -1,14 +1,11 @@
 
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PasswordManager {
     private static PasswordManager instance;
     private final List<Password> passwordEntries;
-    private ObjectOutputStream out;
-    private ObjectInputStream in;
 
     private PasswordManager() {
         passwordEntries = new ArrayList<>();
@@ -29,13 +26,31 @@ public class PasswordManager {
     public void removePasswordEntry(Password password) {
         passwordEntries.remove(password);
     }
+    public void removePasswordEntry(String platform, String userName) {
+        passwordEntries.removeIf(entry -> entry.getPlatform().equals(platform) && entry.getUserName().equals(userName));
+    }
 
     public void readFileToList() {
-        //TODO: Read the file and add the entries to the list
+        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("files/passwordEntries.ser"))) {
+            Object obj;
+            while((obj = in.readObject()) != null) {
+                passwordEntries.add((Password) obj);
+            }
+        } catch (IOException e) {
+            System.out.println("File not found...");
+        } catch (ClassNotFoundException e) {
+            System.out.println("Class not found...");
+        }
     }
 
     public void writeListToFile() {
-        //TODO: Write the list to the file
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("files/passwordEntries.ser"))) {
+            for (Password entry : passwordEntries) {
+                out.writeObject(entry);
+            }
+        } catch (IOException e) {
+            System.out.println("File not found...");
+        }
     }
 
     public List<Password> getPasswordEntries() {
