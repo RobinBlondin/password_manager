@@ -17,4 +17,8 @@ public class UI extends JFrame {
     public void addOrEditPage() {
         //TODO: Create the add or edit page
     }
+
+    public void registrationPage() {
+
+    }
 }
