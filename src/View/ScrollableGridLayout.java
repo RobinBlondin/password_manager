@@ -11,7 +11,7 @@ public class ScrollableGridLayout extends JPanel {
     JPanel gridPanel;
     public ScrollableGridLayout() {
         this.passwordManager = PasswordManager.getInstance();
-        gridPanel = new JPanel(new GridLayout(0, 1));
+        gridPanel = new JPanel(new GridLayout(100, 1));
         gridPanel.setBorder(BorderFactory.createEmptyBorder());
 
         for (Password entry : passwordManager.getPasswordEntries()) {
@@ -25,4 +25,27 @@ public class ScrollableGridLayout extends JPanel {
         add(scrollPane);
         setVisible(true);
     }
+
+    public void refresh() {
+        gridPanel.removeAll();
+        for (Password entry : passwordManager.getPasswordEntries()) {
+            gridPanel.add(new ListPanel(entry.getPlatform(), entry.getUserName(), entry.getPassword()));
+        }
+        gridPanel.revalidate();
+        gridPanel.repaint();
+    }
+
+    public void filter(String filter) {
+        gridPanel.removeAll();
+        filter = filter.toLowerCase();
+        for (Password entry : passwordManager.getPasswordEntries()) {
+            if(entry.getPlatform().toLowerCase().contains(filter) || entry.getUserName().toLowerCase().contains(filter)) {
+                gridPanel.add(new ListPanel(entry.getPlatform(), entry.getUserName(), entry.getPassword()));
+            }
+        }
+        gridPanel.revalidate();
+        gridPanel.repaint();
+    }
+
+
 }
