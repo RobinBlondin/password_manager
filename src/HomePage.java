@@ -17,7 +17,7 @@ public class HomePage extends JFrame {
         scrollableGridLayout = new ScrollableGridLayout();
         this.setLayout(new BorderLayout());
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(new Dimension(800, 800));
+        this.setSize(new Dimension(920, 800));
 
         pages = new JPanel();
         pages.setLayout(cardLayout);
