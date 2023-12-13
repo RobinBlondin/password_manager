@@ -97,11 +97,12 @@ public class HomePage extends JFrame {
             this.setVisible(true);
         }
     }
-
-    public PasswordManager getPasswordManager() {
-        return passwordManager;
+    public void refresh() {
+        scrollableGridLayout.refresh();
     }
-
+    public void filter(String filter) {
+        scrollableGridLayout.filter(filter);
+    }
     public static void main(String[] args) {
         HomePage homePage = new HomePage();
         homePage.passwordManager.addPasswordEntry(new Password("Google", "johndoe", "password"));
