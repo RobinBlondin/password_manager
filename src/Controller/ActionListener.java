@@ -1,3 +1,8 @@
+package Controller;
+
+import Model.PasswordManager;
+import View.HomePage;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 

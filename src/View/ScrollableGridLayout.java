@@ -1,3 +1,8 @@
+package View;
+
+import Model.Password;
+import Model.PasswordManager;
+
 import javax.swing.*;
 import java.awt.*;
 
