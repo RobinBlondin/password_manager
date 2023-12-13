@@ -82,20 +82,14 @@ public class HomePage extends JFrame {
         public ButtonPanel(String text) {
             this.setLayout(new BorderLayout());
 
-            button = new JButton();
-            button.setText(text);
-            button.setFont(styleSettings.getSmallFont());
-            button.setBackground(styleSettings.getBackgroundColor_LIGHT());
-            button.setForeground(styleSettings.getTextColor_DARK());
-            button.setBorder(BorderFactory.createEmptyBorder());
-            button.setHorizontalAlignment(SwingConstants.CENTER);
-            button.addActionListener(new ActionListener(HomePage.this));
-            button.setFocusPainted(false);
-            button.setVisible(true);
-
-            this.add(button, BorderLayout.CENTER);
-            this.setVisible(true);
-        }
+        // This writes the list to the file when the window is closed.
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                passwordManager.writeListToFile();
+                System.exit(0);
+            }
+        });
     }
     public void refresh() {
         scrollableGridLayout.refresh();
