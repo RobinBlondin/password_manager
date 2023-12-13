@@ -105,5 +105,6 @@ public class HomePage extends JFrame {
         homePage.passwordManager.addPasswordEntry(new Password("Spotify", "Fnatte"));
         homePage.passwordManager.addPasswordEntry(new Password("Twitch", "Tjatte"));*/
 
+
     }
 }
