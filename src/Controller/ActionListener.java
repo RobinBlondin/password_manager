@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 
 public class ActionListener implements java.awt.event.ActionListener {
-    private HomePage homePage;
+    private final HomePage homePage;
     private final PasswordManager passwordManager;
 
     public ActionListener(HomePage homePage) {
