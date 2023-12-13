@@ -16,5 +16,13 @@ public class ActionListener implements java.awt.event.ActionListener {
             passwordManager.writeListToFile();
             System.exit(0);
         }
+        if(button.getText().equals("EDIT")) {
+            String platform = JOptionPane.showInputDialog("Platform");
+            String userName = JOptionPane.showInputDialog("User name");
+            String newPassword = JOptionPane.showInputDialog("New Password");
+            passwordManager.changePassword(platform, userName, newPassword);
+            passwordManager.writeListToFile();
+            homePage = new HomePage();
+        }
     }
 }
