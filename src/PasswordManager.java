@@ -20,6 +20,15 @@ public class PasswordManager {
         return instance;
     }
 
+    public void changePassword(String platform, String userName, String password) {
+        for (Password passwordEntry : passwordEntries) {
+            if (passwordEntry.getPlatform().equals(platform) && passwordEntry.getUserName().equals(userName)) {
+                passwordEntry.setPassword(password);
+                System.out.println("Password has changed!");
+            }
+        }
+    }
+
     public void addPasswordEntry(Password password) {
         passwordEntries.add(password);
         sortList();
