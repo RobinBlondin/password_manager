@@ -12,21 +12,21 @@ public class StyleSettings {
     private final Color textColor_BLACK;
     private final Color textColor_WHITE;
     private final Color textColor_SELECTED;
-    private final Color buttonColor_DARK;
-    private final Color buttonColor_LIGHT;
+    private final Color textColor_DARK;
+    private final Color textColor_LIGHT;
 
     public StyleSettings() {
-        bigFont = new Font("Sans Serif", Font.PLAIN, 40);
-        mediumFont = new Font("Sans Serif", Font.PLAIN, 30);
-        smallFont = new Font("Sans Serif", Font.PLAIN, 20);
+        bigFont = new Font("Sans Serif", Font.PLAIN, 35);
+        mediumFont = new Font("Sans Serif", Font.PLAIN, 25);
+        smallFont = new Font("Sans Serif", Font.PLAIN, 18);
         backgroundColor_LIGHT = new Color(216, 230, 232);
         backgroundColor_DARK = new Color(12, 100,118);
         backgroundColor_SELECTED = new Color(206, 226, 228);
         textColor_BLACK = new Color(0, 0, 0);
         textColor_WHITE = new Color(255, 255, 255);
         textColor_SELECTED = new Color(38, 98, 110);
-        buttonColor_DARK = new Color(26, 63, 59);
-        buttonColor_LIGHT = new Color(157, 172, 174);
+        textColor_DARK = new Color(26, 63, 59);
+        textColor_LIGHT = new Color(157, 172, 174);
     }
     public static StyleSettings getInstance() {
         if (instance == null) {
@@ -71,11 +71,11 @@ public class StyleSettings {
         return textColor_SELECTED;
     }
 
-    public Color getButtonColor_DARK() {
-        return buttonColor_DARK;
+    public Color getTextColor_DARK() {
+        return textColor_DARK;
     }
 
-    public Color getButtonColor_LIGHT() {
-        return buttonColor_LIGHT;
+    public Color getTextColor_LIGHT() {
+        return textColor_LIGHT;
     }
 }

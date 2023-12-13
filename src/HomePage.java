@@ -1,0 +1,127 @@
+import javax.swing.*;
+import java.awt.*;
+
+public class HomePage extends JFrame {
+    private final JPanel pages;
+    private final JPanel sidePanel;
+    private final StyleSettings styleSettings = new StyleSettings();
+    private PasswordManager passwordManager;
+
+    private ScrollableGridLayout scrollableGridLayout;
+    private CardLayout cardLayout;
+
+
+    public HomePage() {
+        passwordManager = PasswordManager.getInstance();
+        cardLayout = new CardLayout();
+        scrollableGridLayout = new ScrollableGridLayout();
+        this.setLayout(new BorderLayout());
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setSize(new Dimension(800, 800));
+
+        pages = new JPanel();
+        pages.setLayout(cardLayout);
+        pages.setBackground(Color.WHITE);
+        pages.setSize(new Dimension(600, 675));
+        pages.setBorder(BorderFactory.createEmptyBorder());
+
+        JPanel emptyPanel = new JPanel();
+        emptyPanel.setBackground(styleSettings.getBackgroundColor_LIGHT());
+        emptyPanel.setPreferredSize(new Dimension(200, 50));
+        emptyPanel.setVisible(true);
+        sidePanel = new JPanel();
+        sidePanel.setLayout(new GridLayout(8, 1));
+        sidePanel.setBackground(styleSettings.getBackgroundColor_LIGHT());
+        sidePanel.setPreferredSize(new Dimension(200, 800));
+        sidePanel.add(new ButtonPanel("ADD", "images/addIcon.png"));
+        sidePanel.add(new ButtonPanel("EDIT", "images/addIcon.png"));
+        sidePanel.add(new ButtonPanel("REMOVE", "images/addIcon.png"));
+        sidePanel.add(emptyPanel);
+        sidePanel.add(emptyPanel);
+        sidePanel.add(emptyPanel);
+        sidePanel.add(emptyPanel);
+        sidePanel.add(emptyPanel);
+        sidePanel.add(new ButtonPanel("LOGOUT", "images/addIcon.png"));
+        sidePanel.add(new ButtonPanel("EXIT", "images/addIcon.png"));
+
+
+        JPanel topPanel = new JPanel();
+        topPanel.setBackground(styleSettings.getBackgroundColor_LIGHT());
+        topPanel.setPreferredSize(new Dimension(800, 75));;
+        topPanel.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.lightGray));
+
+        JPanel bottomPanel = new JPanel();
+        bottomPanel.setBackground(styleSettings.getBackgroundColor_DARK());
+        bottomPanel.setPreferredSize(new Dimension(800, 50));
+
+
+        this.add(sidePanel, BorderLayout.WEST);
+        this.add(scrollableGridLayout, BorderLayout.CENTER);
+        this.add(topPanel, BorderLayout.NORTH);
+        this.add(bottomPanel, BorderLayout.SOUTH);
+        this.setVisible(true);
+    }
+
+    private class ButtonPanel extends JPanel {
+        private final JButton button;
+        private final BackgroundImageLabel label;
+
+        public ButtonPanel(String text, String imagePath) {
+            this.setLayout(new BorderLayout());
+
+
+            button = new JButton();
+            button.setText(text);
+            button.setFont(styleSettings.getSmallFont());
+            button.setBackground(styleSettings.getBackgroundColor_LIGHT());
+            button.setForeground(styleSettings.getTextColor_DARK());
+            button.setBorder(BorderFactory.createEmptyBorder());
+            button.setHorizontalAlignment(SwingConstants.CENTER);
+            button.addActionListener(new ActionListener(HomePage.this));
+            button.setFocusPainted(false);
+            button.setVisible(true);
+
+            label = new BackgroundImageLabel(imagePath);
+
+            this.add(label, BorderLayout.WEST);
+            this.add(button, BorderLayout.CENTER);
+            this.setVisible(true);
+        }
+    }
+
+    private class BackgroundImageLabel extends JLabel {
+        private Image backgroundImage;
+
+        public BackgroundImageLabel(String imagePath) {
+            ImageIcon icon = new ImageIcon(imagePath);
+            backgroundImage = icon.getImage();
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            g.drawImage(backgroundImage, 0, 0, 25, 25, this);
+        }
+    }
+
+    public PasswordManager getPasswordManager() {
+        return passwordManager;
+    }
+
+    public static void main(String[] args) {
+        HomePage homePage = new HomePage();
+        homePage.passwordManager.addPasswordEntry(new Password("Google", "johndoe", "password"));
+        homePage.passwordManager.addPasswordEntry(new Password("Facebook", "johndoe", "password"));
+        homePage.passwordManager.addPasswordEntry(new Password("Instagram", "johndoe", "password"));
+        homePage.passwordManager.addPasswordEntry(new Password("Twitter", "johndoe", "password"));
+        homePage.passwordManager.addPasswordEntry(new Password("Reddit", "johndoe", "password"));
+        homePage.passwordManager.addPasswordEntry(new Password("LinkedIn", "johndoe", "password"));
+        homePage.passwordManager.addPasswordEntry(new Password("Github", "johndoe", "password"));
+        homePage.passwordManager.addPasswordEntry(new Password("StackOverflow", "johndoe", "password"));
+        homePage.passwordManager.addPasswordEntry(new Password("Youtube", "johndoe", "password"));
+        homePage.passwordManager.addPasswordEntry(new Password("Netflix", "johndoe", "password"));
+        homePage.passwordManager.addPasswordEntry(new Password("Spotify", "johndoe", "password"));
+        homePage.passwordManager.addPasswordEntry(new Password("Twitch", "johndoe", "password"));
+
+    }
+}

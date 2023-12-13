@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 
 public class UI extends JFrame {
     private final PasswordManager passwordManager;
@@ -20,5 +21,9 @@ public class UI extends JFrame {
 
     public void registrationPage() {
 
+    }
+
+    public static void main(String[] args) {
+        UI ui = new UI();
     }
 }
