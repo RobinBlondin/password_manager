@@ -6,7 +6,7 @@ public class HomePage extends JFrame {
     private final JPanel sidePanel;
     private final StyleSettings styleSettings = new StyleSettings();
     private PasswordManager passwordManager;
-
+    private SearchPanel searchPanel;
     private ScrollableGridLayout scrollableGridLayout;
     private CardLayout cardLayout;
 
@@ -33,22 +33,32 @@ public class HomePage extends JFrame {
         sidePanel.setLayout(new GridLayout(8, 1));
         sidePanel.setBackground(styleSettings.getBackgroundColor_LIGHT());
         sidePanel.setPreferredSize(new Dimension(200, 800));
-        sidePanel.add(new ButtonPanel("ADD", "images/addIcon.png"));
-        sidePanel.add(new ButtonPanel("EDIT", "images/addIcon.png"));
-        sidePanel.add(new ButtonPanel("REMOVE", "images/addIcon.png"));
+        sidePanel.add(new ButtonPanel("ADD"));
+        sidePanel.add(new ButtonPanel("EDIT"));
+        sidePanel.add(new ButtonPanel("REMOVE"));
         sidePanel.add(emptyPanel);
         sidePanel.add(emptyPanel);
         sidePanel.add(emptyPanel);
         sidePanel.add(emptyPanel);
         sidePanel.add(emptyPanel);
-        sidePanel.add(new ButtonPanel("LOGOUT", "images/addIcon.png"));
-        sidePanel.add(new ButtonPanel("EXIT", "images/addIcon.png"));
+        sidePanel.add(new ButtonPanel("LOGOUT"));
+        sidePanel.add(new ButtonPanel("EXIT"));
 
 
-        JPanel topPanel = new JPanel();
+        searchPanel = new SearchPanel();
+        JPanel topPanel = new JPanel(new BorderLayout());
+        JPanel emptyWestPanel = new JPanel();
+        emptyWestPanel.setPreferredSize(new Dimension(175, 75));
+        emptyWestPanel.setBackground(styleSettings.getBackgroundColor_LIGHT());
+        JPanel emptyEastPanel = new JPanel();
+        emptyEastPanel.setPreferredSize(new Dimension(350, 75));
+        emptyEastPanel.setBackground(styleSettings.getBackgroundColor_LIGHT());
         topPanel.setBackground(styleSettings.getBackgroundColor_LIGHT());
         topPanel.setPreferredSize(new Dimension(800, 75));;
         topPanel.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.lightGray));
+        topPanel.add(emptyWestPanel, BorderLayout.WEST);
+        topPanel.add(searchPanel, BorderLayout.CENTER);
+        topPanel.add(emptyEastPanel, BorderLayout.EAST);
 
         JPanel bottomPanel = new JPanel();
         bottomPanel.setBackground(styleSettings.getBackgroundColor_DARK());
@@ -64,11 +74,9 @@ public class HomePage extends JFrame {
 
     private class ButtonPanel extends JPanel {
         private final JButton button;
-        private final BackgroundImageLabel label;
 
-        public ButtonPanel(String text, String imagePath) {
+        public ButtonPanel(String text) {
             this.setLayout(new BorderLayout());
-
 
             button = new JButton();
             button.setText(text);
@@ -81,26 +89,8 @@ public class HomePage extends JFrame {
             button.setFocusPainted(false);
             button.setVisible(true);
 
-            label = new BackgroundImageLabel(imagePath);
-
-            this.add(label, BorderLayout.WEST);
             this.add(button, BorderLayout.CENTER);
             this.setVisible(true);
-        }
-    }
-
-    private class BackgroundImageLabel extends JLabel {
-        private Image backgroundImage;
-
-        public BackgroundImageLabel(String imagePath) {
-            ImageIcon icon = new ImageIcon(imagePath);
-            backgroundImage = icon.getImage();
-        }
-
-        @Override
-        protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            g.drawImage(backgroundImage, 0, 0, 25, 25, this);
         }
     }
 

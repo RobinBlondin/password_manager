@@ -17,7 +17,7 @@ public class PasswordManager {
         if (instance == null) {
             instance = new PasswordManager();
         }
-        return new PasswordManager();
+        return instance;
     }
 
     public void addPasswordEntry(Password password) {
