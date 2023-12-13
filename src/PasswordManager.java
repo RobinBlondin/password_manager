@@ -34,12 +34,14 @@ public class PasswordManager {
 
     public void readFileToList() {
         try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("files/passwordEntries.bin"))) {
-            Object obj;
-            while((obj = in.readObject()) != null) {
-                passwordEntries.add((Password) obj);
+            while(true) {
+                try {
+                    Password password = (Password) in.readObject();
+                    passwordEntries.add(password);
+                } catch (EOFException e) {
+                    break;
+                }
             }
-        } catch (EOFException e) {
-            System.out.println("End of file...");
         } catch (IOException e) {
             System.out.println("Reading file error: File not found...");
         } catch (ClassNotFoundException e) {
