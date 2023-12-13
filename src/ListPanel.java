@@ -1,5 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ListPanel extends JPanel {
     JLabel platformLabel;
@@ -53,6 +57,13 @@ public class ListPanel extends JPanel {
         copyButton.setFocusPainted(false);
         copyButton.setBackground(styleSettings.getTextColor_WHITE());
         copyButton.setBorder(BorderFactory.createEmptyBorder());
+        copyButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+                clipboard.setContents(new StringSelection(password), null);
+            }
+        });
 
         centerPanel.add(platformLabel);
         centerPanel.add(usernameLabel);

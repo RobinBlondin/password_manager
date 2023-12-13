@@ -1,5 +1,6 @@
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Random;
 
 public class Password implements Serializable {
     private int passwordLength;
@@ -32,7 +33,17 @@ public class Password implements Serializable {
     }
 
     public void generatePassword(int passwordLength) {
-        //TODO: Generate a random password
+        int leftLimit = 48; // numeral '0'
+        int rightLimit = 122; // letter 'z'
+        Random random = new Random();
+
+        String generatedString = random.ints(leftLimit, rightLimit + 1)
+                .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
+                .limit(passwordLength)
+                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                .toString();
+
+        password = generatedString;
     }
 
     //Getters and setters
