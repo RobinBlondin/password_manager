@@ -16,18 +16,29 @@ public class ActionListener implements java.awt.event.ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        JButton button = (JButton) e.getSource();
-        if(button.getText().equals("EXIT")) {
-            passwordManager.writeListToFile();
-            System.exit(0);
+        if(e.getSource() instanceof JTextField textField) {
+            homePage.filter(textField.getText());
         }
-        if(button.getText().equals("EDIT")) {
-            String platform = JOptionPane.showInputDialog("Platform");
-            String userName = JOptionPane.showInputDialog("User name");
-            String newPassword = JOptionPane.showInputDialog("New Password");
-            passwordManager.changePassword(platform, userName, newPassword);
-            passwordManager.writeListToFile();
-            homePage = new HomePage();
+
+        if (e.getSource() instanceof JButton button) {
+            if (button.getText().equals("EXIT")) {
+                passwordManager.writeListToFile();
+                System.exit(0);
+            }
+            if (button.getText().equals("EDIT")) {
+                String platform = JOptionPane.showInputDialog("Platform");
+                String userName = JOptionPane.showInputDialog("User name");
+                String newPassword = JOptionPane.showInputDialog("New Model.Password(Leave blank if you want a generated password)");
+                passwordManager.changePassword(platform, userName, newPassword);
+                homePage.refresh();
+            }
+
+            if (button.getText().equals("REMOVE")) {
+                String platform = JOptionPane.showInputDialog("Platform");
+                String userName = JOptionPane.showInputDialog("User name");
+                passwordManager.removePasswordEntry(platform, userName);
+                homePage.refresh();
+            }
         }
     }
 }
