@@ -2,7 +2,6 @@ package Model;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class PasswordManager {
@@ -24,8 +23,12 @@ public class PasswordManager {
     public void changePassword(String platform, String userName, String password) {
         for (Password passwordEntry : passwordEntries) {
             if (passwordEntry.getPlatform().equals(platform) && passwordEntry.getUserName().equals(userName)) {
-                passwordEntry.setPassword(password);
-                System.out.println("Password has changed!");
+                if (password.isEmpty()) {
+                    passwordEntry.generatePassword(16);
+                } else {
+                    passwordEntry.setPassword(password);
+                }
+                System.out.println("Model.Password has changed!");
             }
         }
     }
