@@ -18,6 +18,7 @@ public class PasswordManager {
             instance = new PasswordManager();
         }
         return instance;
+
     }
 
     public void changePassword(String platform, String userName, String password) {

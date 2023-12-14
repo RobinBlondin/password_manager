@@ -1,5 +1,3 @@
-package View;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
@@ -8,9 +6,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class ListPanel extends JPanel {
+    StyleSettings styleSettings = StyleSettings.getInstance();
     private final JLabel platformLabel;
     private final JLabel usernameLabel;
     private final JButton passwordLabel;
+    JComboBox dropButton;
 
     String password;
     public ListPanel(String platform, String username, String password) {
@@ -21,6 +21,8 @@ public class ListPanel extends JPanel {
         this.setMaximumSize(new Dimension(600, 50));
         this.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.lightGray));
 
+
+        String [] options = {"Copy", "Remove", "Edit"};
         platformLabel = new JLabel(platform);
         platformLabel.setBorder(BorderFactory.createEmptyBorder(0, 25, 0, 0));
         usernameLabel = new JLabel(username);
@@ -28,10 +30,10 @@ public class ListPanel extends JPanel {
         JButton copyButton = new JButton();
         JPanel centerPanel = new JPanel();
         JLabel emptyLabel = new JLabel();
+        dropButton = new JComboBox(options);
 
         centerPanel.setBackground(Color.WHITE);
 
-        StyleSettings styleSettings = StyleSettings.getInstance();
         platformLabel.setFont(styleSettings.getSmallFont());
         usernameLabel.setFont(styleSettings.getSmallFont());
         passwordLabel.setFont(styleSettings.getSmallFont());
@@ -40,7 +42,8 @@ public class ListPanel extends JPanel {
         platformLabel.setPreferredSize(new Dimension(150, 50));
         usernameLabel.setPreferredSize(new Dimension(150, 50));
         passwordLabel.setPreferredSize(new Dimension(200, 50));
-        copyButton.setPreferredSize(new Dimension(50, 50));
+        dropButton.setPreferredSize(new Dimension(75, 40));
+        //copyButton.setPreferredSize(new Dimension(50, 50));
         emptyLabel.setPreferredSize(new Dimension(25, 50));
 
         passwordLabel.setFocusPainted(false);
@@ -54,9 +57,22 @@ public class ListPanel extends JPanel {
             }
         });
 
-        ImageIcon icon = new ImageIcon("images/copyIcon.png");
-        icon = new ImageIcon(icon.getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH));
-        copyButton.setIcon(icon);
+        dropButton.setFocusable(true);
+        dropButton.setEditable(false);
+        dropButton.setBackground(styleSettings.getTextColor_WHITE());
+        dropButton.setBorder(BorderFactory.createEmptyBorder());
+        dropButton.addActionListener(e -> {
+            if(dropButton.getSelectedItem().equals("Remove")) {
+                // TODO: Remove the entry
+            } else if(dropButton.getSelectedItem().equals("Edit")) {
+                // TODO: Create the edit page
+            } else if(dropButton.getSelectedItem().equals("Copy")) {
+                Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+                clipboard.setContents(new StringSelection(password), null);
+            }
+        });
+
+        /*
         copyButton.setFocusPainted(false);
         copyButton.setBackground(styleSettings.getTextColor_WHITE());
         copyButton.setBorder(BorderFactory.createEmptyBorder());
@@ -77,13 +93,5 @@ public class ListPanel extends JPanel {
         add(centerPanel, BorderLayout.CENTER);
         add(emptyLabel, BorderLayout.EAST);
         this.setVisible(true);
-    }
-
-    public String getPlatform() {
-        return platformLabel.getText();
-    }
-
-    public String getUserName() {
-        return usernameLabel.getText();
     }
 }
