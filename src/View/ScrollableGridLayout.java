@@ -8,7 +8,6 @@ import java.awt.*;
 
 public class ScrollableGridLayout extends JPanel {
     private final PasswordManager passwordManager;
-    JPanel gridPanel;
     private final JPanel gridPanel;
     public ScrollableGridLayout() {
         this.passwordManager = PasswordManager.getInstance();
@@ -38,6 +37,27 @@ public class ScrollableGridLayout extends JPanel {
         }
         gridPanel.revalidate();
         gridPanel.repaint();
+    }
+
+    public void addToUI(Component component) {
+        gridPanel.add(component);
+        this.add(component);
+        this.revalidate();
+        this.repaint();
+    }
+    public void removeFromUI(String platform, String userName) {
+        for (Component component : gridPanel.getComponents()) {
+            if (component instanceof ListPanel listPanel) {
+                if (listPanel.getPlatform().equalsIgnoreCase(platform) && listPanel.getUserName().equalsIgnoreCase(userName)) {
+                    System.out.println("Removing: " + platform + " " + userName);
+                    gridPanel.remove(component);
+                    this.remove(component);
+                    this.revalidate();
+                    this.repaint();
+                    return;
+                }
+            }
+        }
     }
 
     public void filter(String filter) {

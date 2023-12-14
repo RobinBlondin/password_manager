@@ -7,7 +7,9 @@ import View.ListPanel;
 import View.StyleSettings;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.InputMismatchException;
 
 public class ActionListener implements java.awt.event.ActionListener {
     private final HomePage homePage;
@@ -39,7 +41,7 @@ public class ActionListener implements java.awt.event.ActionListener {
                 passwordManager.addPasswordEntry(newEntry);
 
                 passwordManager.sortList();
-                homePage.addComponent(new ListPanel(newEntry.getPlatform(), newEntry.getUserName(), newEntry.getPassword()));
+                homePage.addToUI(new ListPanel(newEntry.getPlatform(), newEntry.getUserName(), newEntry.getPassword()));
                 homePage.refresh();
             }
             if (button.getText().equals("EDIT ENTRY")) {
@@ -57,7 +59,8 @@ public class ActionListener implements java.awt.event.ActionListener {
                 String userName = JOptionPane.showInputDialog("User name");
                 resetColors(button);
                 passwordManager.removePasswordEntry(platform, userName);
-                homePage.removeComponent(new ListPanel(platform, userName, ""));
+
+                homePage.remove(platform, userName);
                 homePage.refresh();
             }
         }

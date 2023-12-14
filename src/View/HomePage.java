@@ -1,6 +1,5 @@
 package View;
 
-import Model.Password;
 import Model.PasswordManager;
 import javax.swing.*;
 import java.awt.*;
@@ -39,10 +38,10 @@ public class HomePage extends JFrame {
         sidePanel.add(new ButtonPanel("ADD ENTRY", this));
         sidePanel.add(new ButtonPanel("EDIT ENTRY", this));
         sidePanel.add(new ButtonPanel("DELETE ENTRY", this));
-        /*sidePanel.add(Box.createVerticalStrut(200));
-        sidePanel.add(Box.createVerticalStrut(200));
-        sidePanel.add(Box.createVerticalStrut(200));
-        sidePanel.add(Box.createVerticalStrut(200));*/
+        sidePanel.add(Box.createVerticalStrut(10));
+        sidePanel.add(Box.createVerticalStrut(10));
+        sidePanel.add(Box.createVerticalStrut(10));
+        sidePanel.add(Box.createVerticalStrut(10));
 
         sidePanel.add(new ButtonPanel("QUIT", this));
 
@@ -92,6 +91,7 @@ public class HomePage extends JFrame {
             }
         });
     }
+
     public void refresh() {
         scrollableGridLayout.refresh();
     }
@@ -99,20 +99,6 @@ public class HomePage extends JFrame {
         scrollableGridLayout.filter(filter);
     }
     public static void main(String[] args) {
-        HomePage homePage = new HomePage();
-        /*homePage.passwordManager.addPasswordEntry(new Password("Google", "robin.blondin@email.com"));
-        homePage.passwordManager.addPasswordEntry(new Password("Facebook", "Daniel"));
-        homePage.passwordManager.addPasswordEntry(new Password("Instagram", "william"));
-        homePage.passwordManager.addPasswordEntry(new Password("Twitter", "Nadia"));
-        homePage.passwordManager.addPasswordEntry(new Password("Reddit", "robin blondin"));
-        homePage.passwordManager.addPasswordEntry(new Password("LinkedIn", "Nisse", "12345678"));
-        homePage.passwordManager.addPasswordEntry(new Password("Github", "klasse@telia.net"));
-        homePage.passwordManager.addPasswordEntry(new Password("StackOverflow", "kalle anka"));
-        homePage.passwordManager.addPasswordEntry(new Password("Youtube", "joakim@vonanka.com"));
-        homePage.passwordManager.addPasswordEntry(new Password("Netflix", "Knatte"));
-        homePage.passwordManager.addPasswordEntry(new Password("Spotify", "Fnatte"));
-        homePage.passwordManager.addPasswordEntry(new Password("Twitch", "Tjatte"));
-        homePage.passwordManager.addPasswordEntry(new Password("TikTok", "Kajsa"));
-        homePage.passwordManager.addPasswordEntry(new Password("Snapchat", "Klara"));*/
+        new HomePage();
     }
 }
