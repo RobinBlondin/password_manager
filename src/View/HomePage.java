@@ -57,16 +57,25 @@ public class HomePage extends JFrame {
         emptyEastPanel.setBackground(styleSettings.getBackgroundColor_LIGHT());
 
         JPanel topPanel = new JPanel(new BorderLayout());
+        ImageIcon icon = new ImageIcon("images/logoIcon.png");
+        icon = new ImageIcon(icon.getImage().getScaledInstance(65, 65, Image.SCALE_SMOOTH));
+        JLabel logoLabel = new JLabel(icon);
+        emptyWestPanel.add(logoLabel);
         topPanel.setBackground(styleSettings.getBackgroundColor_LIGHT());
         topPanel.setPreferredSize(new Dimension(800, 75));
         topPanel.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.lightGray));
+
         topPanel.add(emptyWestPanel, BorderLayout.WEST);
         topPanel.add(searchPanel, BorderLayout.CENTER);
         topPanel.add(emptyEastPanel, BorderLayout.EAST);
 
         JPanel bottomPanel = new JPanel();
+        JLabel creatorsLabel = new JLabel("Creators:      Nadia Nazari      William Wisten      Daniel Jägestedt      Robin Blondin");
+        creatorsLabel.setForeground(styleSettings.getTextColor_LIGHT());
+        creatorsLabel.setBorder(BorderFactory.createEmptyBorder(15, 0, 0, 0));
         bottomPanel.setBackground(styleSettings.getBackgroundColor_DARK());
         bottomPanel.setPreferredSize(new Dimension(800, 50));
+        bottomPanel.add(creatorsLabel);
 
         this.add(sidePanel, BorderLayout.WEST);
         this.add(scrollableGridLayout, BorderLayout.CENTER);
@@ -102,8 +111,8 @@ public class HomePage extends JFrame {
         homePage.passwordManager.addPasswordEntry(new Password("Youtube", "joakim@vonanka.com"));
         homePage.passwordManager.addPasswordEntry(new Password("Netflix", "Knatte"));
         homePage.passwordManager.addPasswordEntry(new Password("Spotify", "Fnatte"));
-        homePage.passwordManager.addPasswordEntry(new Password("Twitch", "Tjatte"));*/
-
-
+        homePage.passwordManager.addPasswordEntry(new Password("Twitch", "Tjatte"));
+        homePage.passwordManager.addPasswordEntry(new Password("TikTok", "Kajsa"));
+        homePage.passwordManager.addPasswordEntry(new Password("Snapchat", "Klara"));*/
     }
 }
