@@ -2,19 +2,19 @@ package View;
 
 import Model.Password;
 import Model.PasswordManager;
-
 import javax.swing.*;
 import java.awt.*;
 
 public class ScrollableGridLayout extends JPanel {
+    private final int MIN_ENTRIES = 12;
     private final PasswordManager passwordManager;
     private final JPanel gridPanel;
     public ScrollableGridLayout() {
         this.passwordManager = PasswordManager.getInstance();
-        listSize = passwordManager.getPasswordEntries().size();
         this.setLayout(new BorderLayout());
         this.setBackground(Color.WHITE);
-        gridPanel = new JPanel(new GridLayout(listSize, 1));
+        gridPanel = new JPanel();
+        gridPanel.setLayout(new BoxLayout(gridPanel, BoxLayout.PAGE_AXIS));
         gridPanel.setBorder(BorderFactory.createEmptyBorder());
         gridPanel.setBackground(Color.WHITE);
 
@@ -34,6 +34,9 @@ public class ScrollableGridLayout extends JPanel {
         gridPanel.removeAll();
         for (Password entry : passwordManager.getPasswordEntries()) {
             gridPanel.add(new ListPanel(entry.getPlatform(), entry.getUserName(), entry.getPassword()));
+        }
+        for (int i = passwordManager.getPasswordEntries().size(); i < MIN_ENTRIES; i++) {
+            gridPanel.add(new JPanel());
         }
         gridPanel.revalidate();
         gridPanel.repaint();
@@ -68,9 +71,10 @@ public class ScrollableGridLayout extends JPanel {
                 gridPanel.add(new ListPanel(entry.getPlatform(), entry.getUserName(), entry.getPassword()));
             }
         }
+        for (int i = passwordManager.getPasswordEntries().size(); i < MIN_ENTRIES; i++) {
+            gridPanel.add(new JPanel());
+        }
         gridPanel.revalidate();
         gridPanel.repaint();
     }
-
-
 }
