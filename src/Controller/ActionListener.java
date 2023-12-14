@@ -1,7 +1,9 @@
 package Controller;
 
+import Model.Password;
 import Model.PasswordManager;
 import View.HomePage;
+import View.ListPanel;
 import View.StyleSettings;
 
 import javax.swing.*;
@@ -22,26 +24,40 @@ public class ActionListener implements java.awt.event.ActionListener {
         }
 
         if (e.getSource() instanceof JButton button) {
-            if (button.getText().equals("EXIT")) {
+            if (button.getText().equals("QUIT")) {
                 passwordManager.writeListToFile();
                 System.exit(0);
             }
-            if (button.getText().equals("EDIT")) {
-                //setSelectedColors(button);
+            if (button.getText().equals("ADD ENTRY")) {
+                setSelectedColors(button);
                 String platform = JOptionPane.showInputDialog("Platform");
                 String userName = JOptionPane.showInputDialog("User name");
-                String newPassword = JOptionPane.showInputDialog("New Model.Password(Leave blank if you want a generated password)");
-                //resetColors(button);
-                passwordManager.changePassword(platform, userName, newPassword);
+                String password = JOptionPane.showInputDialog("Password(Leave blank if you want a generated password)");
+                resetColors(button);
+
+                Password newEntry = new Password(platform, userName, password);
+                passwordManager.addPasswordEntry(newEntry);
+
+                passwordManager.sortList();
+                homePage.addComponent(new ListPanel(newEntry.getPlatform(), newEntry.getUserName(), newEntry.getPassword()));
                 homePage.refresh();
             }
+            if (button.getText().equals("EDIT ENTRY")) {
+                setSelectedColors(button);
+                String platform = JOptionPane.showInputDialog("Platform");
+                String userName = JOptionPane.showInputDialog("User name");
+                String newPassword = JOptionPane.showInputDialog("Password(Leave blank if you want a generated password)");
+                resetColors(button);
+                passwordManager.changePassword(platform, userName, newPassword);
+            }
 
-            if (button.getText().equals("REMOVE")) {
+            if (button.getText().equals("DELETE ENTRY")) {
                 setSelectedColors(button);
                 String platform = JOptionPane.showInputDialog("Platform");
                 String userName = JOptionPane.showInputDialog("User name");
                 resetColors(button);
                 passwordManager.removePasswordEntry(platform, userName);
+                homePage.removeComponent(new ListPanel(platform, userName, ""));
                 homePage.refresh();
             }
         }
