@@ -23,13 +23,13 @@ public class PasswordManager {
 
     public void changePassword(String platform, String userName, String password) {
         for (Password passwordEntry : passwordEntries) {
-            if (passwordEntry.getPlatform().equals(platform) && passwordEntry.getUserName().equals(userName)) {
+            if (passwordEntry.getPlatform().equalsIgnoreCase(platform) && passwordEntry.getUserName().equals(userName)) {
                 if (password.isEmpty()) {
                     passwordEntry.generatePassword(16);
                 } else {
                     passwordEntry.setPassword(password);
                 }
-                System.out.println("Model.Password has changed!");
+                System.out.println("Password has changed!");
             }
         }
     }

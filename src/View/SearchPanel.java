@@ -4,6 +4,10 @@ import Controller.ActionListener;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class SearchPanel extends JPanel {
     public SearchPanel(HomePage homePage) {
@@ -29,16 +33,45 @@ public class SearchPanel extends JPanel {
         JPanel rightPanel = new JPanel();
         rightPanel.setPreferredSize(new Dimension(200, 75));
         rightPanel.setBackground(styleSettings.getBackgroundColor_LIGHT());
-        rightPanel.setBorder(BorderFactory.createEmptyBorder(25, 0, 0, 0));
+        rightPanel.setBorder(BorderFactory.createEmptyBorder(25, 0, 0, 150));
 
-        JTextField searchField = new JTextField();
+        JTextField searchField = new JTextField("Search entry");
         searchField.addActionListener(new ActionListener(homePage));
         searchField.setPreferredSize(new Dimension(200, 30));
         searchField.setFont(styleSettings.getSmallFont());
         searchField.setBorder(BorderFactory.createEmptyBorder());
         searchField.setBackground(styleSettings.getBackgroundColor_SELECTED());
-        searchField.setForeground(styleSettings.getTextColor_DARK());
+        searchField.setForeground(styleSettings.getTextColor_LIGHT());
         searchField.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+        //Set to false so field isnt focused on startup, so placeholder text is visible
+        searchField.setFocusable(false);
+
+        //Set to true when clicked, so user can type
+        searchField.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                searchField.setFocusable(true);
+            }
+        });
+
+        searchField.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (searchField.getText().equals("Search entry")) {
+                    searchField.setText("");
+                    searchField.setForeground(styleSettings.getTextColor_DARK());
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (searchField.getText().isEmpty()) {
+                    searchField.setText("Search entry");
+                    searchField.setForeground(styleSettings.getTextColor_LIGHT());
+                }
+            }
+        });
 
         rightPanel.add(searchField);
 

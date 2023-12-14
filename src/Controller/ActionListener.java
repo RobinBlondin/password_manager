@@ -8,8 +8,9 @@ import View.StyleSettings;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
-import java.util.InputMismatchException;
 
 public class ActionListener implements java.awt.event.ActionListener {
     private final HomePage homePage;
@@ -41,7 +42,7 @@ public class ActionListener implements java.awt.event.ActionListener {
                 passwordManager.addPasswordEntry(newEntry);
 
                 passwordManager.sortList();
-                homePage.addToUI(new ListPanel(newEntry.getPlatform(), newEntry.getUserName(), newEntry.getPassword()));
+                homePage.addToUI(new ListPanel(newEntry.getPlatform(), newEntry.getUserName(), newEntry.getPassword(), homePage));
                 homePage.refresh();
             }
             if (button.getText().equals("EDIT ENTRY")) {
@@ -51,6 +52,7 @@ public class ActionListener implements java.awt.event.ActionListener {
                 String newPassword = JOptionPane.showInputDialog("Password(Leave blank if you want a generated password)");
                 resetColors(button);
                 passwordManager.changePassword(platform, userName, newPassword);
+                homePage.refresh();
             }
 
             if (button.getText().equals("DELETE ENTRY")) {

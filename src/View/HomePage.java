@@ -13,11 +13,12 @@ public class HomePage extends JFrame {
     public HomePage() {
         passwordManager = PasswordManager.getInstance();
         CardLayout cardLayout = new CardLayout();
-        scrollableGridLayout = new ScrollableGridLayout();
+        scrollableGridLayout = new ScrollableGridLayout(this);
 
         this.setLayout(new BorderLayout());
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(new Dimension(800, 800));
+        this.setSize(new Dimension(950, 800));
+        this.setTitle("Password Manager");
 
         JPanel pages = new JPanel();
         pages.setLayout(cardLayout);
@@ -73,7 +74,7 @@ public class HomePage extends JFrame {
         creatorsLabel.setForeground(styleSettings.getTextColor_LIGHT());
         creatorsLabel.setBorder(BorderFactory.createEmptyBorder(15, 0, 0, 0));
         bottomPanel.setBackground(styleSettings.getBackgroundColor_DARK());
-        bottomPanel.setPreferredSize(new Dimension(800, 50));
+        bottomPanel.setPreferredSize(new Dimension(875, 50));
         bottomPanel.add(creatorsLabel);
 
         this.add(sidePanel, BorderLayout.WEST);

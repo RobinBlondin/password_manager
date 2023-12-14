@@ -9,7 +9,9 @@ public class ScrollableGridLayout extends JPanel {
     private final int MIN_ENTRIES = 12;
     private final PasswordManager passwordManager;
     private final JPanel gridPanel;
-    public ScrollableGridLayout() {
+    private final HomePage homePage;
+    public ScrollableGridLayout(HomePage homePage) {
+        this.homePage = homePage;
         this.passwordManager = PasswordManager.getInstance();
         this.setLayout(new BorderLayout());
         this.setBackground(Color.WHITE);
@@ -19,7 +21,7 @@ public class ScrollableGridLayout extends JPanel {
         gridPanel.setBackground(Color.WHITE);
 
         for (Password entry : passwordManager.getPasswordEntries()) {
-            gridPanel.add(new ListPanel(entry.getPlatform(), entry.getUserName(), entry.getPassword()));
+            gridPanel.add(new ListPanel(entry.getPlatform(), entry.getUserName(), entry.getPassword(), homePage));
         }
 
         JScrollPane scrollPane = new JScrollPane(gridPanel,
@@ -33,7 +35,7 @@ public class ScrollableGridLayout extends JPanel {
     public void refresh() {
         gridPanel.removeAll();
         for (Password entry : passwordManager.getPasswordEntries()) {
-            gridPanel.add(new ListPanel(entry.getPlatform(), entry.getUserName(), entry.getPassword()));
+            gridPanel.add(new ListPanel(entry.getPlatform(), entry.getUserName(), entry.getPassword(), homePage));
         }
         for (int i = passwordManager.getPasswordEntries().size(); i < MIN_ENTRIES; i++) {
             gridPanel.add(new JPanel());
@@ -68,7 +70,7 @@ public class ScrollableGridLayout extends JPanel {
         filter = filter.toLowerCase();
         for (Password entry : passwordManager.getPasswordEntries()) {
             if(entry.getPlatform().toLowerCase().contains(filter) || entry.getUserName().toLowerCase().contains(filter)) {
-                gridPanel.add(new ListPanel(entry.getPlatform(), entry.getUserName(), entry.getPassword()));
+                gridPanel.add(new ListPanel(entry.getPlatform(), entry.getUserName(), entry.getPassword(), homePage));
             }
         }
         for (int i = passwordManager.getPasswordEntries().size(); i < MIN_ENTRIES; i++) {
