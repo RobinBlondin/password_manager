@@ -1,7 +1,7 @@
+package Model;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class PasswordManager {
@@ -23,8 +23,12 @@ public class PasswordManager {
 
     public void changePassword(String platform, String userName, String password) {
         for (Password passwordEntry : passwordEntries) {
-            if (passwordEntry.getPlatform().equals(platform) && passwordEntry.getUserName().equals(userName)) {
-                passwordEntry.setPassword(password);
+            if (passwordEntry.getPlatform().equalsIgnoreCase(platform) && passwordEntry.getUserName().equals(userName)) {
+                if (password.isEmpty()) {
+                    passwordEntry.generatePassword(16);
+                } else {
+                    passwordEntry.setPassword(password);
+                }
                 System.out.println("Password has changed!");
             }
         }
@@ -39,17 +43,19 @@ public class PasswordManager {
         passwordEntries.remove(password);
     }
     public void removePasswordEntry(String platform, String userName) {
-        passwordEntries.removeIf(entry -> entry.getPlatform().equals(platform) && entry.getUserName().equals(userName));
+        passwordEntries.removeIf(entry -> entry.getPlatform().equalsIgnoreCase(platform) && entry.getUserName().equalsIgnoreCase(userName));
     }
 
     public void readFileToList() {
         try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("files/passwordEntries.bin"))) {
-            Object obj;
-            while((obj = in.readObject()) != null) {
-                passwordEntries.add((Password) obj);
+            while(true) {
+                try {
+                    Password password = (Password) in.readObject();
+                    passwordEntries.add(password);
+                } catch (EOFException e) {
+                    break;
+                }
             }
-        } catch (EOFException e) {
-            System.out.println("End of file...");
         } catch (IOException e) {
             System.out.println("Reading file error: File not found...");
         } catch (ClassNotFoundException e) {
