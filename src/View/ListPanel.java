@@ -25,9 +25,10 @@ public class ListPanel extends JPanel {
         this.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.lightGray));
 
         platformLabel = new JLabel(platform);
+        platformLabel.setBorder(BorderFactory.createEmptyBorder(0, 25, 0, 0));
         usernameLabel = new JLabel(username);
         passwordLabel = new JButton("***************");
-        copyButton = new JButton("Copy");
+        copyButton = new JButton();
         centerPanel = new JPanel();
         emptyLabel = new JLabel();
 
@@ -55,7 +56,9 @@ public class ListPanel extends JPanel {
             }
         });
 
-
+        ImageIcon icon = new ImageIcon("images/copyIcon.png");
+        icon = new ImageIcon(icon.getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH));
+        copyButton.setIcon(icon);
         copyButton.setFocusPainted(false);
         copyButton.setBackground(styleSettings.getTextColor_WHITE());
         copyButton.setBorder(BorderFactory.createEmptyBorder());
