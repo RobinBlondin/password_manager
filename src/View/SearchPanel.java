@@ -12,12 +12,11 @@ public class SearchPanel extends JPanel {
         this.setLayout(new BorderLayout());
         this.setBackground(styleSettings.getBackgroundColor_LIGHT());
         this.setPreferredSize(new Dimension(300, 75));
-        this.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.lightGray));
 
         JPanel leftPanel = new JPanel();
         leftPanel.setPreferredSize(new Dimension(50, 75));
         leftPanel.setBackground(styleSettings.getBackgroundColor_LIGHT());
-        leftPanel.setBorder(BorderFactory.createEmptyBorder(10, 25, 0, 0));
+        leftPanel.setBorder(BorderFactory.createEmptyBorder(25, 25, 0, 0));
 
         JLabel imageLabel = new JLabel(new ImageIcon(new ImageIcon("images/searchIcon.png")
                 .getImage()
@@ -30,7 +29,7 @@ public class SearchPanel extends JPanel {
         JPanel rightPanel = new JPanel();
         rightPanel.setPreferredSize(new Dimension(200, 75));
         rightPanel.setBackground(styleSettings.getBackgroundColor_LIGHT());
-        rightPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
+        rightPanel.setBorder(BorderFactory.createEmptyBorder(25, 0, 0, 0));
 
         JTextField searchField = new JTextField();
         searchField.addActionListener(new ActionListener(homePage));

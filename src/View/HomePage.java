@@ -29,23 +29,22 @@ public class HomePage extends JFrame {
         JPanel emptyPanel = new JPanel();
         StyleSettings styleSettings = new StyleSettings();
         emptyPanel.setBackground(styleSettings.getBackgroundColor_LIGHT());
-        emptyPanel.setPreferredSize(new Dimension(200, 50));
+        emptyPanel.setPreferredSize(new Dimension(200, 100));
         emptyPanel.setVisible(true);
 
         JPanel sidePanel = new JPanel();
         sidePanel.setLayout(new GridLayout(8, 1));
         sidePanel.setBackground(styleSettings.getBackgroundColor_LIGHT());
         sidePanel.setPreferredSize(new Dimension(200, 800));
-        sidePanel.add(new ButtonPanel("ADD", this));
-        sidePanel.add(new ButtonPanel("EDIT", this));
-        sidePanel.add(new ButtonPanel("REMOVE", this));
-        sidePanel.add(emptyPanel);
-        sidePanel.add(emptyPanel);
-        sidePanel.add(emptyPanel);
-        sidePanel.add(emptyPanel);
-        sidePanel.add(emptyPanel);
-        sidePanel.add(new ButtonPanel("LOGOUT", this));
-        sidePanel.add(new ButtonPanel("EXIT", this));
+        sidePanel.add(new ButtonPanel("ADD ENTRY", this));
+        sidePanel.add(new ButtonPanel("EDIT ENTRY", this));
+        sidePanel.add(new ButtonPanel("DELETE ENTRY", this));
+        /*sidePanel.add(Box.createVerticalStrut(200));
+        sidePanel.add(Box.createVerticalStrut(200));
+        sidePanel.add(Box.createVerticalStrut(200));
+        sidePanel.add(Box.createVerticalStrut(200));*/
+
+        sidePanel.add(new ButtonPanel("QUIT", this));
 
         SearchPanel searchPanel = new SearchPanel(this);
 
