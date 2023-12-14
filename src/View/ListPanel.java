@@ -8,13 +8,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class ListPanel extends JPanel {
-    JLabel platformLabel;
-    JLabel usernameLabel;
-    JButton passwordLabel;
-    JLabel emptyLabel;
-    JPanel centerPanel;
-    JButton copyButton;
-    StyleSettings styleSettings = StyleSettings.getInstance();
+    private final JLabel platformLabel;
+    private final JLabel usernameLabel;
+    private final JButton passwordLabel;
 
     String password;
     public ListPanel(String platform, String username, String password) {
@@ -22,6 +18,7 @@ public class ListPanel extends JPanel {
         this.setLayout(new BorderLayout());
         this.setBackground(Color.WHITE);
         this.setPreferredSize(new Dimension(600, 50));
+        this.setMaximumSize(new Dimension(600, 50));
         this.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.lightGray));
 
         platformLabel = new JLabel(platform);
@@ -34,6 +31,7 @@ public class ListPanel extends JPanel {
 
         centerPanel.setBackground(Color.WHITE);
 
+        StyleSettings styleSettings = StyleSettings.getInstance();
         platformLabel.setFont(styleSettings.getSmallFont());
         usernameLabel.setFont(styleSettings.getSmallFont());
         passwordLabel.setFont(styleSettings.getSmallFont());
@@ -79,5 +77,13 @@ public class ListPanel extends JPanel {
         add(centerPanel, BorderLayout.CENTER);
         add(emptyLabel, BorderLayout.EAST);
         this.setVisible(true);
+    }
+
+    public String getPlatform() {
+        return platformLabel.getText();
+    }
+
+    public String getUserName() {
+        return usernameLabel.getText();
     }
 }
