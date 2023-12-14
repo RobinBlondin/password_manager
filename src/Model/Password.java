@@ -17,6 +17,9 @@ public class Password implements Serializable {
         this.password = password;
         this.passwordLength = 16;
         this.date = LocalDate.now();
+        if (password.isEmpty()) {
+            generatePassword(this.passwordLength);
+        }
     }
 
     public Password(String platform, String userName, int passwordLength) {
