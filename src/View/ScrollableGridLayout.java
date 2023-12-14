@@ -9,10 +9,15 @@ import java.awt.*;
 public class ScrollableGridLayout extends JPanel {
     private final PasswordManager passwordManager;
     JPanel gridPanel;
+    private final JPanel gridPanel;
     public ScrollableGridLayout() {
         this.passwordManager = PasswordManager.getInstance();
-        gridPanel = new JPanel(new GridLayout(100, 1));
+        listSize = passwordManager.getPasswordEntries().size();
+        this.setLayout(new BorderLayout());
+        this.setBackground(Color.WHITE);
+        gridPanel = new JPanel(new GridLayout(listSize, 1));
         gridPanel.setBorder(BorderFactory.createEmptyBorder());
+        gridPanel.setBackground(Color.WHITE);
 
         for (Password entry : passwordManager.getPasswordEntries()) {
             gridPanel.add(new ListPanel(entry.getPlatform(), entry.getUserName(), entry.getPassword()));
@@ -22,7 +27,7 @@ public class ScrollableGridLayout extends JPanel {
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
-        add(scrollPane);
+        add(scrollPane, BorderLayout.CENTER);
         setVisible(true);
     }
 
