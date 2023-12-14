@@ -42,7 +42,7 @@ public class PasswordManager {
         passwordEntries.remove(password);
     }
     public void removePasswordEntry(String platform, String userName) {
-        passwordEntries.removeIf(entry -> entry.getPlatform().equals(platform) && entry.getUserName().equals(userName));
+        passwordEntries.removeIf(entry -> entry.getPlatform().equalsIgnoreCase(platform) && entry.getUserName().equalsIgnoreCase(userName));
     }
 
     public void readFileToList() {
