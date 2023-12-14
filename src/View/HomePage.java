@@ -98,6 +98,12 @@ public class HomePage extends JFrame {
     public void filter(String filter) {
         scrollableGridLayout.filter(filter);
     }
+    public void addToUI(Component component) {
+        scrollableGridLayout.addToUI(component);
+    }
+    public void remove(String platform, String userName) {
+        scrollableGridLayout.removeFromUI(platform, userName);
+    }
     public static void main(String[] args) {
         new HomePage();
     }
