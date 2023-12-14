@@ -25,9 +25,9 @@ public class ListPanel extends JPanel {
         platformLabel.setBorder(BorderFactory.createEmptyBorder(0, 25, 0, 0));
         usernameLabel = new JLabel(username);
         passwordLabel = new JButton("***************");
-        copyButton = new JButton();
-        centerPanel = new JPanel();
-        emptyLabel = new JLabel();
+        JButton copyButton = new JButton();
+        JPanel centerPanel = new JPanel();
+        JLabel emptyLabel = new JLabel();
 
         centerPanel.setBackground(Color.WHITE);
 
