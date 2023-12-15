@@ -1,15 +1,11 @@
 package View;
 
-import Controller.ActionListener;
 import Model.PasswordManager;
-import View.StyleSettings;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.Objects;
 
 public class ListPanel extends JPanel {
@@ -72,6 +68,10 @@ public class ListPanel extends JPanel {
                 homePage.remove(platform, username);
             } else if (Objects.equals(dropButton.getSelectedItem(), "Edit")) {
                 String newPassword = JOptionPane.showInputDialog("Password(Leave blank if you want a generated password)");
+                if(newPassword == null){
+                    JOptionPane.showMessageDialog(null, "Password unchanged");
+                    return;
+                }
                 passwordManager.changePassword(platform, username, newPassword);
                 homePage.refresh();
             } else if(Objects.equals(dropButton.getSelectedItem(), "Copy password")) {
