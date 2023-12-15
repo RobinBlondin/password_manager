@@ -7,9 +7,6 @@ import View.ListPanel;
 import View.StyleSettings;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.datatransfer.Clipboard;
-import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 
 public class ActionListener implements java.awt.event.ActionListener {
@@ -34,7 +31,15 @@ public class ActionListener implements java.awt.event.ActionListener {
             if (button.getText().equals("ADD ENTRY")) {
                 setSelectedColors(button);
                 String platform = JOptionPane.showInputDialog("Platform");
+                if(platform == null || platform.isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Incomplete input, operation canceled");
+                    return;
+                }
                 String userName = JOptionPane.showInputDialog("User name");
+                if(userName == null || userName.isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Incomplete input, operation canceled");
+                    return;
+                }
                 String password = JOptionPane.showInputDialog("Password(Leave blank if you want a generated password)");
                 resetColors(button);
 
